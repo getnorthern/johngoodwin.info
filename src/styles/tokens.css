@@ -1,0 +1,157 @@
+:root {
+  /* Colour — dark warm charcoal, off-white ink, one accent. Trying the dark direction. */
+  --color-bg: #181715;
+  --color-bg-alt: #211f1c;
+  --color-ink: #f3efe6;
+  --color-ink-soft: #a39c8e;
+  --color-ink-faint: #93897a;
+  --color-accent: #85c093;
+  --color-accent-ink: #0f1811;
+  --color-accent-invert: #3f6b4a;
+  --color-border: #37332c;
+
+  /* Type */
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --size-sm: clamp(0.875rem, 0.83rem + 0.2vw, 0.95rem);
+  --size-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --size-lg: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --size-xl: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+  --size-2xl: clamp(2.25rem, 1.8rem + 1.8vw, 3.25rem);
+  --size-3xl: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4.5rem;
+  --space-7: 6.5rem;
+  --space-8: 9rem;
+
+  /* Layout */
+  --content-width: 46rem;
+  --wide-width: 68rem;
+  --radius: 3px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--size-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Faint grain to keep flat dark sections from reading as too digital */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+.section {
+  padding: var(--space-7) var(--space-3);
+}
+
+.section-inner {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+}
+
+.section-inner--narrow {
+  max-width: var(--content-width);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--size-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+/* Scroll-reveal: elements start hidden, .is-visible triggers the transition */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: var(--space-6) var(--space-2);
+  }
+}
