@@ -23,7 +23,7 @@ import Contact from './components/sections/Contact.vue'
     <Contact />
   </main>
   <footer class="site-footer">
-    <p>John Goodwin - Congleton, Cheshire</p>
+    <p>John Goodwin - Cheshire, North West, UK</p>
   </footer>
 </template>
 

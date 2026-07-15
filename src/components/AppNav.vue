@@ -82,7 +82,7 @@ function handleLogoClick(e: MouseEvent) {
 
   <Transition name="backdrop">
     <div
-      v-if="drawerOpen"
+      v-show="drawerOpen"
       class="nav-drawer__backdrop"
       aria-hidden="true"
       @click="drawerOpen = false"
@@ -91,7 +91,7 @@ function handleLogoClick(e: MouseEvent) {
 
   <Transition name="drawer">
     <div
-      v-if="drawerOpen"
+      v-show="drawerOpen"
       id="nav-drawer"
       class="nav-drawer"
       role="dialog"
@@ -196,7 +196,6 @@ function handleLogoClick(e: MouseEvent) {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: var(--space-2);
 }
 
 .nav-burger {
@@ -226,6 +225,7 @@ function handleLogoClick(e: MouseEvent) {
 .nav-name {
   display: flex;
   align-items: center;
+  margin-left: auto;
   text-decoration: none;
   color: var(--color-ink);
 }
@@ -240,17 +240,15 @@ function handleLogoClick(e: MouseEvent) {
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
-  /* Optical correction: the descender on the "J" and "g" pulls the glyphs'
-     visual centre below the line box's geometric centre, since there's no
-     equivalent ascender weight to balance it - nudge up to compensate. */
-  transform: translateY(-2px);
+  transform: translateY(3px);
 }
 
 @media (max-width: 640px) {
   .nav-name-icon {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
   }
 
   .nav-name-text {
@@ -281,6 +279,7 @@ function handleLogoClick(e: MouseEvent) {
   padding-top: 200px;
   background: var(--color-bg-alt);
   border-right: 1px solid var(--color-border);
+  opacity: 0.9;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
