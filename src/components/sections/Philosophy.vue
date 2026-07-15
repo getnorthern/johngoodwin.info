@@ -52,7 +52,7 @@ useScrollReveal()
 }
 
 .philosophy-list p {
-  font-size: var(--size-lg);
+  font-size: var(--size-base);
   line-height: var(--leading-snug);
   max-width: 42rem;
 }

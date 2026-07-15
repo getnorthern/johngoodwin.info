@@ -20,15 +20,15 @@ useScrollReveal()
     <div class="section-inner" ref="reveal">
       <p class="eyebrow">Off the clock</p>
       <div class="personal-intro">
-        <div class="personal-copy">
-          <p v-for="(para, i) in personalParagraphs" :key="i" class="personal-para">{{ para }}</p>
-        </div>
         <figure class="personal-photo">
           <picture>
             <source srcset="/john-goodwin-dog.webp" type="image/webp" />
-            <img src="/john-goodwin-dog.jpg" alt="John at home with one of his dogs" width="200" height="200" />
+            <img src="/john-goodwin-dog.jpg" alt="John skiing with his family in Austria" width="200" height="200" />
           </picture>
         </figure>
+        <div class="personal-copy">
+          <p v-for="(para, i) in personalParagraphs" :key="i" class="personal-para">{{ para }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -76,6 +76,7 @@ useScrollReveal()
 
 .personal-copy {
   flex: 1;
+  order: 1;
 }
 
 .personal-para {
@@ -91,6 +92,7 @@ useScrollReveal()
 .personal-photo {
   margin: 0;
   flex-shrink: 0;
+  order: 2;
 }
 
 .personal-photo img {
@@ -104,17 +106,18 @@ useScrollReveal()
 
 @media (max-width: 780px) {
   .personal-intro {
-    flex-direction: column;
-    gap: var(--space-3);
+    display: block;
   }
 
   .personal-photo {
-    order: -1;
+    float: left;
+    margin: 0 var(--space-3) var(--space-2) 0;
+    shape-outside: circle(50%);
   }
 
   .personal-photo img {
-    width: 160px;
-    height: 160px;
+    width: 96px;
+    height: 96px;
   }
 
   .personal-mountains {

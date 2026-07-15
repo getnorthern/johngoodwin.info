@@ -9,6 +9,7 @@ useScrollReveal()
     <div class="section-inner section-inner--narrow contact" ref="reveal">
       <p class="eyebrow">Get in touch</p>
       <h2 class="contact-heading">Open to Head of Engineering / Director of Engineering conversations.</h2>
+      <p class="contact-location">Based in Cheshire, UK - flexible on remote or hybrid, depending on location.</p>
       <div class="contact-links">
         <a href="mailto:me@johngoodwin.info" class="btn btn-primary">Email me</a>
         <a href="https://www.linkedin.com/in/goodwinjohn" target="_blank" rel="noopener" class="btn">LinkedIn</a>
@@ -29,6 +30,11 @@ useScrollReveal()
 
 .contact-heading {
   font-size: var(--size-xl);
+  margin-bottom: var(--space-2);
+}
+
+.contact-location {
+  color: var(--color-ink-soft);
   margin-bottom: var(--space-4);
 }
 

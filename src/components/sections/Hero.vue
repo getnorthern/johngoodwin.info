@@ -13,16 +13,16 @@ const yearsInSoftware = getYearsInSoftware()
       <h1 class="hero-title">John Goodwin</h1>
       <p class="hero-role">Head of Engineering, CAVU (Manchester Airports Group)</p>
       <div class="hero-intro">
+        <picture class="hero-photo-wrap">
+          <source srcset="/john-goodwin.webp" type="image/webp" />
+          <img src="/john-goodwin.jpg" alt="John Goodwin" class="hero-photo" width="200" height="200" />
+        </picture>
         <p class="hero-tagline">
           {{ yearsInSoftware }} years in software, the last three spent turning a small engineering
           team into one that can carry real weight - 120 people, sixteen squads, systems that can't
           afford to go down. I lead with trust over process, and I care as much about the leaders I
           grow as the platforms we ship.
         </p>
-        <picture>
-          <source srcset="/john-goodwin.webp" type="image/webp" />
-          <img src="/john-goodwin.jpg" alt="John Goodwin" class="hero-photo" width="200" height="200" />
-        </picture>
       </div>
     </div>
   </section>
@@ -58,6 +58,12 @@ const yearsInSoftware = getYearsInSoftware()
   max-width: 34rem;
   line-height: var(--leading-snug);
   flex: 1;
+  order: 1;
+}
+
+.hero-photo-wrap {
+  flex-shrink: 0;
+  order: 2;
 }
 
 .hero-photo {
@@ -65,7 +71,7 @@ const yearsInSoftware = getYearsInSoftware()
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0;
+  display: block;
   border: 1px solid var(--color-border);
 }
 
@@ -75,14 +81,18 @@ const yearsInSoftware = getYearsInSoftware()
   }
 
   .hero-intro {
-    flex-direction: column;
-    gap: var(--space-3);
+    display: block;
+  }
+
+  .hero-photo-wrap {
+    float: left;
+    margin: 0 var(--space-3) var(--space-2) 0;
+    shape-outside: circle(50%);
   }
 
   .hero-photo {
-    order: -1;
-    width: 160px;
-    height: 160px;
+    width: 96px;
+    height: 96px;
   }
 }
 </style>

@@ -39,10 +39,15 @@
   --content-width: 46rem;
   --wide-width: 68rem;
   --radius: 3px;
+  --nav-height: 64px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: var(--nav-height);
 }
 
 @media (prefers-reduced-motion: no-preference) {

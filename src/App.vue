@@ -28,6 +28,10 @@ import Contact from './components/sections/Contact.vue'
 </template>
 
 <style scoped>
+main {
+  padding-top: var(--nav-height);
+}
+
 .site-footer {
   padding: var(--space-4) var(--space-3);
   text-align: center;
