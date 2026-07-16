@@ -66,4 +66,14 @@ useScrollReveal()
     gap: var(--space-4);
   }
 }
+
+@media (max-width: 640px) {
+  /* .section's own horizontal padding shrinks to --space-2 at this
+     breakpoint (see tokens.css) - match it here so the negative margin
+     still exactly cancels the padding instead of bleeding past the
+     viewport edge. */
+  .work-item {
+    margin: calc(var(--space-2) * -1);
+  }
+}
 </style>
