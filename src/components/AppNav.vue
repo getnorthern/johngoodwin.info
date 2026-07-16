@@ -41,6 +41,7 @@ const links = [
   { href: '#story', label: 'Story' },
   { href: '#work', label: 'Work' },
   { href: '#philosophy', label: 'Philosophy' },
+  { href: '#testimonials', label: 'Recommendations' },
   { href: '#contact', label: 'Contact' },
 ]
 

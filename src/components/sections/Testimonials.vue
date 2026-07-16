@@ -8,7 +8,7 @@ useScrollReveal()
 <template>
   <section id="testimonials" class="section testimonials-section">
     <div class="section-inner" ref="reveal">
-      <p class="eyebrow">What colleagues say</p>
+      <p class="eyebrow">Colleague recommendations</p>
       <div class="testimonial-grid">
         <a
           v-for="(item, i) in testimonials"
