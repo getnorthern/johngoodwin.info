@@ -10,7 +10,7 @@ const yearsInSoftware = getYearsInSoftware()
   <section id="top" class="hero">
     <div class="hero-inner section-inner section-inner--narrow" ref="reveal">
       <p class="eyebrow">Engineering leadership</p>
-      <h1 class="hero-title">John Goodwin</h1>
+      <h1 class="hero-title">John <span class="text-gradient">Goodwin</span></h1>
       <p class="hero-role">Head of Engineering, CAVU (Manchester Airports Group)</p>
       <div class="hero-intro">
         <picture class="hero-photo-wrap">
@@ -32,7 +32,7 @@ const yearsInSoftware = getYearsInSoftware()
 .hero {
   padding: var(--space-8) var(--space-3) var(--space-7);
   background:
-    radial-gradient(ellipse 900px 520px at 50% -8%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 70%),
+    radial-gradient(ellipse 900px 520px at 50% -8%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%),
     var(--color-bg);
 }
 

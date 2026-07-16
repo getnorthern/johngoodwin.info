@@ -5,9 +5,10 @@
   --color-ink: #f3efe6;
   --color-ink-soft: #a39c8e;
   --color-ink-faint: #93897a;
-  --color-accent: #85c093;
-  --color-accent-ink: #0f1811;
-  --color-accent-invert: #3f6b4a;
+  --color-accent: #ef8433;
+  --color-accent-ink: #241005;
+  --color-accent-invert: #b85a1e;
+  --gradient-accent: linear-gradient(180deg, #f7c948, #e8672c);
   --color-border: #37332c;
 
   /* Type */
@@ -131,8 +132,18 @@ button {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   margin-bottom: var(--space-2);
+}
+
+.text-gradient {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Scroll-reveal: elements start hidden, .is-visible triggers the transition */

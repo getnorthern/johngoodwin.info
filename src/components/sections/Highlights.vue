@@ -59,7 +59,7 @@ useScrollReveal()
 .value {
   font-family: var(--font-display);
   font-size: var(--size-2xl);
-  background: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 55%, var(--color-ink)));
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

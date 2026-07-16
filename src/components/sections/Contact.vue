@@ -21,7 +21,7 @@ useScrollReveal()
 
 <style scoped>
 .contact-section {
-  background: radial-gradient(ellipse 900px 550px at 50% 100%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 70%);
+  background: radial-gradient(ellipse 900px 550px at 50% 100%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%);
 }
 
 .contact {
@@ -64,13 +64,15 @@ useScrollReveal()
 }
 
 .btn-primary {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+  background: var(--gradient-accent);
+  border-color: transparent;
   color: var(--color-accent-ink);
 }
 
 .btn-primary:hover {
-  background: color-mix(in srgb, var(--color-accent) 85%, black);
-  border-color: color-mix(in srgb, var(--color-accent) 85%, black);
+  background: var(--gradient-accent);
+  color: var(--color-accent-ink);
+  filter: brightness(0.9);
+  transform: translateY(-2px);
 }
 </style>

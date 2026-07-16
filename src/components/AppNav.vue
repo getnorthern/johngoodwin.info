@@ -75,7 +75,7 @@ function handleLogoClick(e: MouseEvent) {
       </button>
       <a href="#top" class="nav-name" aria-label="John Goodwin - back to top" @click="handleLogoClick">
         <img src="/favicon.svg" alt="" class="nav-name-icon" width="32" height="32" />
-        <span class="nav-name-text">John Goodwin</span>
+        <span class="nav-name-text">John <span class="text-gradient">Goodwin</span></span>
       </a>
     </div>
   </header>
