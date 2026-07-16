@@ -52,10 +52,10 @@ const yearsInSoftware = getYearsInSoftware()
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -50px;
+  bottom: -50%;
   transform: translateX(-50%);
   width: 100%;
-  height: 100%;
+  height: 200%;
   background-image: url('/constellation.svg');
   background-repeat: no-repeat;
   background-position: center bottom;
