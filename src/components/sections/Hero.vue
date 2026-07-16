@@ -60,7 +60,7 @@ const yearsInSoftware = getYearsInSoftware()
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 100% auto;
-  opacity: 0.7;
+  opacity: 0.4;
   pointer-events: none;
   z-index: 0;
 }
