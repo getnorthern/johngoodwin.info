@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { getYearsInSoftware } from '../../data/profile'
-import { useScrollReveal } from '../../composables/useScrollReveal'
 
-useScrollReveal()
 const yearsInSoftware = getYearsInSoftware()
 </script>
 
 <template>
   <section id="top" class="hero">
-    <div class="hero-inner section-inner section-inner--narrow" ref="reveal">
+    <div class="hero-inner section-inner section-inner--narrow">
       <p class="eyebrow">Engineering leadership</p>
       <h1 class="hero-title">John <span class="text-gradient">Goodwin</span></h1>
       <p class="hero-role">Head of Engineering, CAVU (Manchester Airports Group)</p>
@@ -34,6 +32,27 @@ const yearsInSoftware = getYearsInSoftware()
   background:
     radial-gradient(ellipse 900px 520px at 50% -8%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%),
     var(--color-bg);
+}
+
+.hero-inner {
+  animation: hero-in 0.7s ease both;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-inner {
+    animation: none;
+  }
 }
 
 .hero-title {
