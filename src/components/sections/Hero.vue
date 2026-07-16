@@ -12,8 +12,20 @@ const yearsInSoftware = getYearsInSoftware()
       <p class="hero-role">Head of Engineering, CAVU (Manchester Airports Group)</p>
       <div class="hero-intro">
         <picture class="hero-photo-wrap">
-          <source srcset="/john-goodwin.webp" type="image/webp" />
-          <img src="/john-goodwin.jpg" alt="John Goodwin" class="hero-photo" width="200" height="200" />
+          <source
+            type="image/webp"
+            srcset="/john-goodwin-96.webp 96w, /john-goodwin-192.webp 192w, /john-goodwin-200.webp 200w, /john-goodwin.webp 400w"
+            sizes="(max-width: 640px) 96px, 200px"
+          />
+          <img
+            src="/john-goodwin.jpg"
+            srcset="/john-goodwin-96.jpg 96w, /john-goodwin-192.jpg 192w, /john-goodwin-200.jpg 200w, /john-goodwin.jpg 400w"
+            sizes="(max-width: 640px) 96px, 200px"
+            alt="John Goodwin"
+            class="hero-photo"
+            width="200"
+            height="200"
+          />
         </picture>
         <p class="hero-tagline">
           {{ yearsInSoftware }} years in software, the last three spent turning a small engineering
