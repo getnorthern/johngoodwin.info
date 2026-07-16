@@ -24,12 +24,12 @@ useScrollReveal()
           <picture>
             <source
               type="image/webp"
-              srcset="/austria-192.webp 192w, /austria.webp 400w"
+              srcset="/austria-96.webp 96w, /austria-192.webp 192w, /austria-200.webp 200w, /austria.webp 400w"
               sizes="(max-width: 780px) 96px, 200px"
             />
             <img
               src="/austria.jpg"
-              srcset="/austria-192.jpg 192w, /austria.jpg 400w"
+              srcset="/austria-96.jpg 96w, /austria-192.jpg 192w, /austria-200.jpg 200w, /austria.jpg 400w"
               sizes="(max-width: 780px) 96px, 200px"
               alt="John skiing with his family in Austria"
               width="200"

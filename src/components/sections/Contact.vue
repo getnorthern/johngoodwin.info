@@ -65,7 +65,7 @@ useScrollReveal()
 
 .btn-primary {
   background: var(--gradient-accent);
-  border-color: transparent;
+  border: none;
   color: var(--color-accent-ink);
 }
 

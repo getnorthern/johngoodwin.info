@@ -8,21 +8,31 @@ useScrollReveal()
 <template>
   <section id="testimonials" class="section testimonials-section">
     <div class="section-inner" ref="reveal">
-      <p class="eyebrow">In their words</p>
+      <p class="eyebrow">What colleagues say</p>
       <div class="testimonial-grid">
-        <blockquote v-for="(item, i) in testimonials" :key="i" :class="{ empty: !item.quote }">
-          <template v-if="item.quote">
-            <p class="quote">&ldquo;{{ item.quote }}&rdquo;</p>
-            <footer>{{ item.name }}, {{ item.role }}</footer>
-          </template>
-          <template v-else>
-            <p class="placeholder-note">
-              Ask a manager, peer, or direct report for a couple of honest sentences on what it's
-              like working with you - add it to
-              <code>src/data/testimonials.ts</code>.
-            </p>
-          </template>
-        </blockquote>
+        <a
+          v-for="(item, i) in testimonials"
+          :key="i"
+          href="https://www.linkedin.com/in/goodwinjohn/details/recommendations/"
+          target="_blank"
+          rel="noopener"
+          class="testimonial-card"
+          :class="{ empty: !item.quote }"
+        >
+          <blockquote>
+            <template v-if="item.quote">
+              <p class="quote">&ldquo;{{ item.quote }}&rdquo;</p>
+              <footer>{{ item.name }}, {{ item.role }}</footer>
+            </template>
+            <template v-else>
+              <p class="placeholder-note">
+                Ask a manager, peer, or direct report for a couple of honest sentences on what it's
+                like working with you - add it to
+                <code>src/data/testimonials.ts</code>.
+              </p>
+            </template>
+          </blockquote>
+        </a>
       </div>
     </div>
   </section>
@@ -39,24 +49,30 @@ useScrollReveal()
   gap: var(--space-4);
 }
 
-blockquote {
-  margin: 0;
+.testimonial-card {
+  display: block;
   padding: var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-bg-alt);
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-blockquote:not(.empty):hover {
+.testimonial-card:not(.empty):hover {
   transform: translateY(-3px);
   border-color: var(--color-accent);
   box-shadow: 0 10px 28px color-mix(in srgb, var(--color-bg) 55%, transparent);
 }
 
-blockquote.empty {
+.testimonial-card.empty {
   border-style: dashed;
   background: transparent;
+}
+
+blockquote {
+  margin: 0;
 }
 
 .quote {
