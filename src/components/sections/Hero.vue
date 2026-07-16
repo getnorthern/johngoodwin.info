@@ -41,7 +41,7 @@ const yearsInSoftware = getYearsInSoftware()
 @keyframes hero-in {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(64px);
   }
   to {
     opacity: 1;
