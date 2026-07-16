@@ -22,8 +22,19 @@ useScrollReveal()
       <div class="personal-intro">
         <figure class="personal-photo">
           <picture>
-            <source srcset="/john-goodwin-dog.webp" type="image/webp" />
-            <img src="/john-goodwin-dog.jpg" alt="John skiing with his family in Austria" width="200" height="200" />
+            <source
+              type="image/webp"
+              srcset="/austria-192.webp 192w, /austria.webp 400w"
+              sizes="(max-width: 780px) 96px, 200px"
+            />
+            <img
+              src="/austria.jpg"
+              srcset="/austria-192.jpg 192w, /austria.jpg 400w"
+              sizes="(max-width: 780px) 96px, 200px"
+              alt="John skiing with his family in Austria"
+              width="200"
+              height="200"
+            />
           </picture>
         </figure>
         <div class="personal-copy">
