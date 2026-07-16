@@ -40,10 +40,33 @@ const yearsInSoftware = getYearsInSoftware()
 
 <style scoped>
 .hero {
+  position: relative;
   padding: var(--space-8) var(--space-3) var(--space-7);
   background:
     radial-gradient(ellipse 900px 520px at 50% -8%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%),
     var(--color-bg);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background-image: url('/constellation.svg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-inner {
