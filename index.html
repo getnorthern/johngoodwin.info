@@ -26,14 +26,36 @@
       />
     </noscript>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PNREYGPSW"></script>
+    <!-- Google tag (gtag.js) - the dataLayer/gtag stub is set up immediately so
+         no events are lost, but the ~65KB library itself only loads once the
+         browser is idle (or on first scroll/interaction), keeping it off the
+         critical initial-load path Lighthouse measures. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-0PNREYGPSW');
+
+      function loadGtagScript() {
+        if (window.__gtagScriptLoaded) return;
+        window.__gtagScriptLoaded = true;
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-0PNREYGPSW';
+        document.head.appendChild(script);
+      }
+
+      ['scroll', 'keydown', 'click', 'touchstart'].forEach(function (event) {
+        window.addEventListener(event, loadGtagScript, { once: true, passive: true });
+      });
+
+      window.addEventListener('load', function () {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGtagScript, { timeout: 4000 });
+        } else {
+          setTimeout(loadGtagScript, 2000);
+        }
+      });
     </script>
   </head>
   <body>
