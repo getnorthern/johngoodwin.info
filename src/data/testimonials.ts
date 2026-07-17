@@ -9,15 +9,15 @@ export interface TestimonialSlot {
 export const testimonials: TestimonialSlot[] = [
   {
     quote:
-      "He created a safe space to ask questions and fail, and helped me see growth opportunities I couldn't spot myself. He took a chance on me moving from Senior Engineer to Tech Lead, and taught me the delegation and trade-off habits that actually stuck.",
-    name: 'Pete Fletcher',
-    role: 'Engineering Lead - reported to John at CAVU',
-  },
-  {
-    quote:
       'He thinks clearly, weighs the options properly, and commits to a path with confidence - something steady for the people around him to rally behind. He communicates with a clarity that removes ambiguity and keeps everyone aligned.',
     name: 'Lee Smith',
     role: 'CTO - managed John at CAVU',
+  },
+  {
+    quote:
+      "He created a safe space to ask questions and fail, and helped me see growth opportunities I couldn't spot myself. He took a chance on me moving from Senior Engineer to Tech Lead, and taught me the delegation and trade-off habits that actually stuck.",
+    name: 'Pete Fletcher',
+    role: 'Engineering Lead - reported to John at CAVU',
   },
   {
     quote:
