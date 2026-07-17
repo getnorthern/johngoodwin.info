@@ -59,6 +59,9 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 // to full brightness.
 const BASE_OPACITY = 0.4
 
+// How far towards the full bright gold (#F7C948) a twinkle peaks (1 = all the way).
+const TWINKLE_PEAK = 0.8
+
 function resize() {
   const el = container.value
   const cv = canvas.value
@@ -112,7 +115,7 @@ function draw(t: number) {
     const y = positions[i * 2 + 1]
     const g = Math.min(Math.max(y / VIEW_HEIGHT, 0), 1)
     const rest = g * g * BASE_OPACITY
-    const m = rest + (1 - rest) * twinkleIntensity(i, t)
+    const m = rest + (TWINKLE_PEAK - rest) * twinkleIntensity(i, t)
     const red = Math.round(24 + (247 - 24) * m)
     const green = Math.round(23 + (201 - 23) * m)
     const blue = Math.round(21 + (72 - 21) * m)
