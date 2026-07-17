@@ -41,6 +41,7 @@
   --wide-width: 68rem;
   --radius: 3px;
   --nav-height: 64px;
+  --nav-transition-duration: 0.35s;
 }
 
 * {

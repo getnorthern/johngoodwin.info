@@ -647,8 +647,8 @@
 <stop offset="1" stop-color="#E8672C"/>
 </linearGradient>
 <linearGradient id="paint1_linear_4_967" x1="640.041" y1="0" x2="640.041" y2="1177" gradientUnits="userSpaceOnUse">
-<stop stop-color="#181715"/>
-<stop offset="1" stop-color="#E8672C"/>
+<stop stop-color="#181715" stop-opacity="0"/>
+<stop offset="1" stop-color="#F7C948"/>
 </linearGradient>
 <clipPath id="clip0_4_967">
 <rect width="1280" height="1177" fill="white"/>

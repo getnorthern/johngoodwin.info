@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue'
 import { useNavVisibility } from '../composables/useNavVisibility'
+import ScrollProgress from './ScrollProgress.vue'
 
 const { hidden } = useNavVisibility()
 
@@ -79,6 +80,7 @@ function handleLogoClick(e: MouseEvent) {
         <span class="nav-name-text">John <span class="text-gradient">Goodwin</span></span>
       </a>
     </div>
+    <ScrollProgress />
   </header>
 
   <Transition name="backdrop">
@@ -178,14 +180,15 @@ function handleLogoClick(e: MouseEvent) {
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   transform: translateY(0);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--nav-transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow: visible;
 }
 
 .nav--hidden {
-  transform: translateY(-100%);
+  transform: translateY(calc(-1 * var(--nav-height)));
 }
 
 .nav-inner {
