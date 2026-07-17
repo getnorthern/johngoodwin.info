@@ -25,6 +25,19 @@ const drifts: Drift[] = nodes.map(() => {
 
 const positions = new Float64Array(nodes.length * 2)
 
+// Random twinkle: each node periodically eases from its base opacity to fully
+// opaque and back. twinkles holds [nextStartTime, duration] per node.
+const twinkles = nodes.map<[number, number]>(() => [Math.random() * 15, 0])
+
+function twinkleIntensity(i: number, t: number): number {
+  const tw = twinkles[i]
+  if (t < tw[0]) return 0
+  if (t < tw[0] + tw[1]) return Math.sin((Math.PI * (t - tw[0])) / tw[1])
+  tw[0] = t + 3 + Math.random() * 12
+  tw[1] = 1.5 + Math.random() * 1.5
+  return 0
+}
+
 function updatePositions(t: number) {
   for (let i = 0; i < nodes.length; i++) {
     const [x, y] = nodes[i]
@@ -36,7 +49,6 @@ function updatePositions(t: number) {
 
 let ctx: CanvasRenderingContext2D | null = null
 let lineGradient: CanvasGradient | null = null
-let dotGradient: CanvasGradient | null = null
 let scale = 1
 let rafId = 0
 let intersecting = false
@@ -54,19 +66,16 @@ function resize() {
   ctx = cv.getContext('2d')
   if (!ctx) return
   ctx.setTransform(scale, 0, 0, scale, 0, cv.height - VIEW_HEIGHT * scale)
-  // Gradients from the source SVG: lines fade to orange, dots fade to gold.
+  // Line gradient from the source SVG: fades to orange towards the bottom.
   lineGradient = ctx.createLinearGradient(0, 0, 0, VIEW_HEIGHT)
   lineGradient.addColorStop(0.2, 'rgba(247, 201, 72, 0)')
   lineGradient.addColorStop(1, '#E8672C')
-  dotGradient = ctx.createLinearGradient(0, 0, 0, VIEW_HEIGHT)
-  dotGradient.addColorStop(0, 'rgba(24, 23, 21, 0)')
-  dotGradient.addColorStop(1, '#F7C948')
   draw(performance.now() / 1000)
 }
 
 function draw(t: number) {
   const cv = canvas.value
-  if (!ctx || !cv || !lineGradient || !dotGradient) return
+  if (!ctx || !cv || !lineGradient) return
   updatePositions(t)
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.clearRect(0, 0, cv.width, cv.height)
@@ -84,15 +93,24 @@ function draw(t: number) {
     ctx.stroke()
   }
   ctx.setLineDash([])
-  ctx.fillStyle = dotGradient
-  ctx.beginPath()
+  // Dots are filled individually so each can twinkle: the base colour/alpha
+  // reproduces the SVG's vertical gradient (#181715 alpha 0 -> #F7C948 alpha 1),
+  // and a twinkle raises the alpha from that base towards 1.
   for (let i = 0; i < nodes.length; i++) {
     const r = nodes[i][2]
     if (r === 0) continue
-    ctx.moveTo(positions[i * 2] + r, positions[i * 2 + 1])
-    ctx.arc(positions[i * 2], positions[i * 2 + 1], r, 0, Math.PI * 2)
+    const y = positions[i * 2 + 1]
+    const g = Math.min(Math.max(y / VIEW_HEIGHT, 0), 1)
+    const alpha = g + (1 - g) * twinkleIntensity(i, t)
+    if (alpha <= 0) continue
+    const red = Math.round(24 + (247 - 24) * g)
+    const green = Math.round(23 + (201 - 23) * g)
+    const blue = Math.round(21 + (72 - 21) * g)
+    ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${alpha})`
+    ctx.beginPath()
+    ctx.arc(positions[i * 2], y, r, 0, Math.PI * 2)
+    ctx.fill()
   }
-  ctx.fill()
 }
 
 function shouldAnimate() {
