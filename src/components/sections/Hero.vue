@@ -135,6 +135,10 @@ const yearsInSoftware = getYearsInSoftware()
     padding-top: var(--space-6);
   }
 
+  .hero::before {
+    display: none;
+  }
+
   .hero-intro {
     display: block;
   }
