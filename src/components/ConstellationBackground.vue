@@ -54,6 +54,11 @@ let rafId = 0
 let intersecting = false
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
+// The resting brightness of the whole layer. Previously applied as CSS opacity
+// on the container; baked into the drawing instead so twinkles can ramp past it
+// to full brightness.
+const BASE_OPACITY = 0.4
+
 function resize() {
   const el = container.value
   const cv = canvas.value
@@ -67,9 +72,11 @@ function resize() {
   if (!ctx) return
   ctx.setTransform(scale, 0, 0, scale, 0, cv.height - VIEW_HEIGHT * scale)
   // Line gradient from the source SVG: fades to orange towards the bottom.
+  // BASE_OPACITY is baked in here (the layer itself is opacity 1 so twinkles
+  // can exceed the resting brightness).
   lineGradient = ctx.createLinearGradient(0, 0, 0, VIEW_HEIGHT)
   lineGradient.addColorStop(0.2, 'rgba(247, 201, 72, 0)')
-  lineGradient.addColorStop(1, '#E8672C')
+  lineGradient.addColorStop(1, `rgba(232, 103, 44, ${BASE_OPACITY})`)
   draw(performance.now() / 1000)
 }
 
@@ -101,7 +108,8 @@ function draw(t: number) {
     if (r === 0) continue
     const y = positions[i * 2 + 1]
     const g = Math.min(Math.max(y / VIEW_HEIGHT, 0), 1)
-    const alpha = g + (1 - g) * twinkleIntensity(i, t)
+    const base = g * BASE_OPACITY
+    const alpha = base + (1 - base) * twinkleIntensity(i, t)
     if (alpha <= 0) continue
     const red = Math.round(24 + (247 - 24) * g)
     const green = Math.round(23 + (201 - 23) * g)
@@ -171,7 +179,6 @@ onBeforeUnmount(() => {
   transform: translateX(-50%);
   width: 100%;
   height: 200%;
-  opacity: 0.4;
   pointer-events: none;
   z-index: 0;
 }
