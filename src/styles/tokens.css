@@ -9,6 +9,7 @@
   --color-accent-ink: #241005;
   --color-accent-invert: #b85a1e;
   --gradient-accent: linear-gradient(180deg, #f7c948, #e8672c);
+  --gradient-accent-horizontal: linear-gradient(90deg, #e8672c, #f7c948);
   --color-border: #37332c;
 
   /* Type */
