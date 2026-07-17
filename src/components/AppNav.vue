@@ -123,7 +123,7 @@ function handleLogoClick(e: MouseEvent) {
           class="nav-drawer__link"
           @click="handleNavClick($event, link.href)"
         >
-          {{ link.label }}
+          <span class="nav-drawer__link-text">{{ link.label }}</span>
         </a>
       </nav>
     </div>
@@ -364,16 +364,20 @@ function handleLogoClick(e: MouseEvent) {
   font-weight: 500;
   padding: var(--space-2);
   border-radius: var(--radius);
-  transition:
-    background 0.18s ease,
-    color 0.18s ease;
+  transition: background 0.18s ease;
+}
+
+.nav-drawer__link:hover {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
 }
 
 /*
- * Gradient text needs background-clip: text, which clips every background
- * layer - so the hover pill tint has to go; it would clip to the letters too.
+ * The gradient lives on an inner span so it can coexist with the pill tint
+ * above (background-clip: text clips every background layer on its own
+ * element). Deliberately not transitioned: animating colour to transparent
+ * while the gradient background snaps off makes the text flash on mouse-out.
  */
-.nav-drawer__link:hover {
+.nav-drawer__link:hover .nav-drawer__link-text {
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   background-clip: text;
