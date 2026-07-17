@@ -99,6 +99,8 @@ Agents live in `.claude/agents/`. This is a small static site, not a project wit
 
 No backend, no router (single page, in-page anchor navigation only), no CMS — all content lives in `src/data/*.ts` and is edited directly in the repo.
 
+> **Project history:** see [`HISTORY.md`](./HISTORY.md) for a log of what's been built, bugs fixed (with root causes), things tried and reverted, Lighthouse findings investigated and deliberately left as-is, and environment/tooling quirks discovered along the way. Check it before re-investigating something that looks like a new problem — it might already be a known, deliberate trade-off. Keep it current: add an entry when a non-trivial feature, fix, or decision lands.
+
 ## Tech Stack
 
 - **Frontend:** Vue 3 + Vite + TypeScript, `<script setup>` throughout
