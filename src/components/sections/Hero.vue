@@ -25,6 +25,7 @@ const yearsInSoftware = getYearsInSoftware()
             class="hero-photo"
             width="200"
             height="200"
+            fetchpriority="high"
           />
         </picture>
         <p class="hero-tagline">

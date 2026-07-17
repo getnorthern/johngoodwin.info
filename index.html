@@ -26,6 +26,21 @@
       />
     </noscript>
 
+    <!-- This is a client-rendered SPA, so the hero photo's <img> tag doesn't
+         exist in the raw HTML until Vue mounts - the browser's preload
+         scanner can't discover it on its own. This preload makes the LCP
+         image (the hero photo) discoverable immediately from the initial
+         document instead of waiting on JS execution. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/john-goodwin.webp"
+      imagesrcset="/john-goodwin-96.webp 96w, /john-goodwin-192.webp 192w, /john-goodwin-200.webp 200w, /john-goodwin.webp 400w"
+      imagesizes="(max-width: 640px) 96px, 200px"
+      fetchpriority="high"
+    />
+
     <!-- Google tag (gtag.js) - the dataLayer/gtag stub is set up immediately so
          no events are lost, but the ~65KB library itself only loads once the
          browser is idle (or on first scroll/interaction), keeping it off the
