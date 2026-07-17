@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { getYearsInSoftware } from '../../data/profile'
+import ConstellationBackground from '../ConstellationBackground.vue'
 
 const yearsInSoftware = getYearsInSoftware()
 </script>
 
 <template>
   <section id="top" class="hero">
+    <ConstellationBackground />
     <div class="hero-inner section-inner section-inner--narrow">
       <p class="eyebrow">Engineering leadership</p>
       <h1 class="hero-title">John <span class="text-gradient">Goodwin</span></h1>
@@ -47,23 +49,6 @@ const yearsInSoftware = getYearsInSoftware()
     radial-gradient(ellipse 900px 520px at 50% -8%, color-mix(in srgb, var(--color-accent) 5%, transparent), transparent 70%),
     var(--color-bg);
   overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 200%;
-  background-image: url('/constellation.svg');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% auto;
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .hero-inner {
@@ -134,10 +119,6 @@ const yearsInSoftware = getYearsInSoftware()
 @media (max-width: 640px) {
   .hero {
     padding-top: var(--space-6);
-  }
-
-  .hero::before {
-    display: none;
   }
 
   .hero-intro {
