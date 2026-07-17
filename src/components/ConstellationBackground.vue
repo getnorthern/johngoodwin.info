@@ -100,21 +100,23 @@ function draw(t: number) {
     ctx.stroke()
   }
   ctx.setLineDash([])
-  // Dots are filled individually so each can twinkle: the base colour/alpha
-  // reproduces the SVG's vertical gradient (#181715 alpha 0 -> #F7C948 alpha 1),
-  // and a twinkle raises the alpha from that base towards 1.
+  // Dots are drawn fully opaque so they occlude the lines behind them. The
+  // resting colour mocks the old translucent look: the SVG gradient's colour
+  // and alpha at this height, pre-composited onto the page background
+  // (#181715, which is also the gradient's dark end - so it reduces to a
+  // single blend towards #F7C948). A twinkle fades that colour up to the
+  // full bright gold and back.
   for (let i = 0; i < nodes.length; i++) {
     const r = nodes[i][2]
     if (r === 0) continue
     const y = positions[i * 2 + 1]
     const g = Math.min(Math.max(y / VIEW_HEIGHT, 0), 1)
-    const base = g * BASE_OPACITY
-    const alpha = base + (1 - base) * twinkleIntensity(i, t)
-    if (alpha <= 0) continue
-    const red = Math.round(24 + (247 - 24) * g)
-    const green = Math.round(23 + (201 - 23) * g)
-    const blue = Math.round(21 + (72 - 21) * g)
-    ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${alpha})`
+    const rest = g * g * BASE_OPACITY
+    const m = rest + (1 - rest) * twinkleIntensity(i, t)
+    const red = Math.round(24 + (247 - 24) * m)
+    const green = Math.round(23 + (201 - 23) * m)
+    const blue = Math.round(21 + (72 - 21) * m)
+    ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`
     ctx.beginPath()
     ctx.arc(positions[i * 2], y, r, 0, Math.PI * 2)
     ctx.fill()
