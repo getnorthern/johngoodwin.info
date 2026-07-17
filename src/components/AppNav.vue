@@ -369,9 +369,15 @@ function handleLogoClick(e: MouseEvent) {
     color 0.18s ease;
 }
 
+/*
+ * Gradient text needs background-clip: text, which clips every background
+ * layer - so the hover pill tint has to go; it would clip to the letters too.
+ */
 .nav-drawer__link:hover {
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-  color: var(--color-accent);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ─── Transitions ────────────────────────────────────────────────────────── */
