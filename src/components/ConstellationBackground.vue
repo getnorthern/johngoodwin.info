@@ -126,7 +126,7 @@ function draw(t: number) {
     // Soft-edged glow: opaque out to ~a third of the halo (still occludes the
     // lines behind the node), then fading to transparent.
     const x = positions[i * 2]
-    const halo = r * 2.2
+    const halo = r * 1
     const glow = ctx.createRadialGradient(x, y, 0, x, y, halo)
     glow.addColorStop(0, `rgb(${red}, ${green}, ${blue})`)
     glow.addColorStop(0.35, `rgb(${red}, ${green}, ${blue})`)
