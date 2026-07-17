@@ -123,9 +123,17 @@ function draw(t: number) {
     const red = Math.round(24 + (247 - 24) * m)
     const green = Math.round(23 + (201 - 23) * m)
     const blue = Math.round(21 + (72 - 21) * m)
-    ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`
+    // Soft-edged glow: opaque out to ~a third of the halo (still occludes the
+    // lines behind the node), then fading to transparent.
+    const x = positions[i * 2]
+    const halo = r * 2.2
+    const glow = ctx.createRadialGradient(x, y, 0, x, y, halo)
+    glow.addColorStop(0, `rgb(${red}, ${green}, ${blue})`)
+    glow.addColorStop(0.35, `rgb(${red}, ${green}, ${blue})`)
+    glow.addColorStop(1, `rgba(${red}, ${green}, ${blue}, 0)`)
+    ctx.fillStyle = glow
     ctx.beginPath()
-    ctx.arc(positions[i * 2], y, r, 0, Math.PI * 2)
+    ctx.arc(x, y, halo, 0, Math.PI * 2)
     ctx.fill()
   }
 }
