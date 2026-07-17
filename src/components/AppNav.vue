@@ -258,6 +258,22 @@ function handleLogoClick(e: MouseEvent) {
   .nav-name-text {
     display: none;
   }
+
+  /*
+   * The hide transform only travels -100dvh worth of nav-height, which
+   * isn't always enough to fully clear iOS Safari's dynamic toolbar
+   * overshoot (see the .nav-top-mask comment above). Fading the content
+   * out guarantees it's invisible regardless of where the transform
+   * actually lands, without touching the transform distance the
+   * progress bar relies on to land at top:0.
+   */
+  .nav-inner {
+    transition: opacity var(--nav-transition-duration) ease;
+  }
+
+  .nav--hidden .nav-inner {
+    opacity: 0;
+  }
 }
 
 /* ─── Drawer ─────────────────────────────────────────────────────────────── */
