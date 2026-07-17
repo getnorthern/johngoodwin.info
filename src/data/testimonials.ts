@@ -15,15 +15,15 @@ export const testimonials: TestimonialSlot[] = [
   },
   {
     quote:
-      "He created a safe space to ask questions and fail, and helped me see growth opportunities I couldn't spot myself. He took a chance on me moving from Senior Engineer to Tech Lead, and taught me the delegation and trade-off habits that actually stuck.",
-    name: 'Pete Fletcher',
-    role: 'Engineering Lead - reported to John at CAVU',
-  },
-  {
-    quote:
       "Where John shines is his maturity as a leader, his understanding of people, and his willingness to do right by his teams no matter what it takes. Together we took a couple of in-house teams to nearly 16 squads and 120+ engineers, and rebuilt our flagship platform from the ground up.",
     name: 'Yunus Simjee',
     role: 'Head of Engineering, CAVU - worked alongside John',
+  },
+  {
+    quote:
+      "He created a safe space to ask questions and fail, and helped me see growth opportunities I couldn't spot myself. He took a chance on me moving from Senior Engineer to Tech Lead, and taught me the delegation and trade-off habits that actually stuck.",
+    name: 'Pete Fletcher',
+    role: 'Engineering Lead - reported to John at CAVU',
   },
   {
     quote:
