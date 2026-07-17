@@ -14,7 +14,7 @@ interface Drift {
 
 const drifts: Drift[] = nodes.map(() => {
   const amp = () => 40 + Math.random() * 40
-  const freq = () => (Math.PI * 2) / (54 + Math.random() * 12)
+  const freq = () => (Math.PI * 2) / (72 + Math.random() * 16)
   const phase = () => Math.random() * Math.PI * 2
   return {
     ax1: amp(), ax2: amp() * 0.5, ay1: amp(), ay2: amp() * 0.5,
