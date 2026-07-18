@@ -299,7 +299,7 @@ function handleLogoClick(e: MouseEvent) {
   padding-top: 200px;
   background: var(--color-bg-alt);
   border-right: 1px solid var(--color-border);
-  opacity: 0.9;
+  opacity: 0.95;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
