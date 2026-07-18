@@ -75,4 +75,15 @@ useScrollReveal()
   filter: brightness(0.9);
   transform: translateY(-2px);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+
+  .btn:hover,
+  .btn-primary:hover {
+    transform: none;
+  }
+}
 </style>

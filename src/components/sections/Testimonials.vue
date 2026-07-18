@@ -8,7 +8,7 @@ useScrollReveal()
 <template>
   <section id="testimonials" class="section testimonials-section">
     <div class="section-inner" ref="reveal">
-      <p class="eyebrow">Colleague recommendations</p>
+      <h2 class="eyebrow">Colleague recommendations</h2>
       <div class="testimonial-grid">
         <a
           v-for="(item, i) in testimonials"
@@ -100,6 +100,16 @@ footer {
 @media (max-width: 780px) {
   .testimonial-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-card {
+    transition: none;
+  }
+
+  .testimonial-card:not(.empty):hover {
+    transform: none;
   }
 }
 </style>

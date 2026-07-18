@@ -27,7 +27,10 @@ const positions = new Float64Array(nodes.length * 2)
 
 // Random twinkle: each node periodically eases from its base opacity to fully
 // opaque and back. twinkles holds [nextStartTime, duration] per node.
-const twinkles = nodes.map<[number, number]>(() => [Math.random() * 15, 0])
+const twinkles = nodes.map<[number, number]>(() => [
+  Math.random() * 15,
+  1.5 + Math.random() * 1.5,
+])
 
 function twinkleIntensity(i: number, t: number): number {
   const tw = twinkles[i]
@@ -40,10 +43,10 @@ function twinkleIntensity(i: number, t: number): number {
 
 function updatePositions(t: number) {
   for (let i = 0; i < nodes.length; i++) {
-    const [x, y] = nodes[i]
+    const n = nodes[i]
     const d = drifts[i]
-    positions[i * 2] = x + d.ax1 * Math.sin(d.wx1 * t + d.px1) + d.ax2 * Math.sin(d.wx2 * t + d.px2)
-    positions[i * 2 + 1] = y + d.ay1 * Math.sin(d.wy1 * t + d.py1) + d.ay2 * Math.sin(d.wy2 * t + d.py2)
+    positions[i * 2] = n[0] + d.ax1 * Math.sin(d.wx1 * t + d.px1) + d.ax2 * Math.sin(d.wx2 * t + d.px2)
+    positions[i * 2 + 1] = n[1] + d.ay1 * Math.sin(d.wy1 * t + d.py1) + d.ay2 * Math.sin(d.wy2 * t + d.py2)
   }
 }
 
@@ -65,6 +68,21 @@ const TWINKLE_PEAK = 0.8
 // Minimum resting blend towards gold, so the faintest dots (top of the layer)
 // aren't quite invisible against the background.
 const REST_FLOOR = 0.08
+
+const glowCache = new Map<string, CanvasGradient>()
+
+function glowFor(c: CanvasRenderingContext2D, r: number, red: number, green: number, blue: number): CanvasGradient {
+  const key = `${r}|${red},${green},${blue}`
+  let glow = glowCache.get(key)
+  if (!glow) {
+    glow = c.createRadialGradient(0, 0, 0, 0, 0, r)
+    glow.addColorStop(0, `rgb(${red}, ${green}, ${blue})`)
+    glow.addColorStop(0.35, `rgb(${red}, ${green}, ${blue})`)
+    glow.addColorStop(1, `rgba(${red}, ${green}, ${blue}, 0)`)
+    glowCache.set(key, glow)
+  }
+  return glow
+}
 
 function resize() {
   const el = container.value
@@ -96,13 +114,14 @@ function draw(t: number) {
   ctx.setTransform(scale, 0, 0, scale, 0, cv.height - VIEW_HEIGHT * scale)
   ctx.lineWidth = 0.5
   ctx.strokeStyle = lineGradient
-  for (const dashed of [0, 1]) {
+  for (let dashed = 0; dashed <= 1; dashed++) {
     ctx.setLineDash(dashed ? [2, 4] : [])
     ctx.beginPath()
-    for (const [a, b, dash] of edges) {
-      if (dash !== dashed) continue
-      ctx.moveTo(positions[a * 2], positions[a * 2 + 1])
-      ctx.lineTo(positions[b * 2], positions[b * 2 + 1])
+    for (let j = 0; j < edges.length; j++) {
+      const e = edges[j]
+      if (e[2] !== dashed) continue
+      ctx.moveTo(positions[e[0] * 2], positions[e[0] * 2 + 1])
+      ctx.lineTo(positions[e[1] * 2], positions[e[1] * 2 + 1])
     }
     ctx.stroke()
   }
@@ -124,17 +143,17 @@ function draw(t: number) {
     const green = Math.round(23 + (201 - 23) * m)
     const blue = Math.round(21 + (72 - 21) * m)
     // Soft-edged glow: opaque out to ~a third of the halo (still occludes the
-    // lines behind the node), then fading to transparent.
+    // lines behind the node), then fading to transparent. Gradients are built
+    // in local space and cached by radius+colour - the rgb values are already
+    // integer-quantised, so cache hits are pixel-identical and the per-frame
+    // allocation churn of ~234 createRadialGradient calls goes away.
     const x = positions[i * 2]
-    const halo = r * 1
-    const glow = ctx.createRadialGradient(x, y, 0, x, y, halo)
-    glow.addColorStop(0, `rgb(${red}, ${green}, ${blue})`)
-    glow.addColorStop(0.35, `rgb(${red}, ${green}, ${blue})`)
-    glow.addColorStop(1, `rgba(${red}, ${green}, ${blue}, 0)`)
-    ctx.fillStyle = glow
+    ctx.fillStyle = glowFor(ctx, r, red, green, blue)
+    ctx.translate(x, y)
     ctx.beginPath()
-    ctx.arc(x, y, halo, 0, Math.PI * 2)
+    ctx.arc(0, 0, r, 0, Math.PI * 2)
     ctx.fill()
+    ctx.translate(-x, -y)
   }
 }
 

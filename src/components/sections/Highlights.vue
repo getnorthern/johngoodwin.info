@@ -8,6 +8,7 @@ useScrollReveal()
 <template>
   <section class="highlights">
     <div class="section-inner" ref="reveal">
+      <h2 class="sr-only">Career highlights</h2>
       <ul class="highlights-grid">
         <li v-for="item in highlights" :key="item.label">
           <span class="value">{{ item.value }}</span>

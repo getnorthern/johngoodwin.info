@@ -11,8 +11,9 @@ import Contact from './components/sections/Contact.vue'
 </script>
 
 <template>
+  <a href="#main" class="skip-link">Skip to content</a>
   <AppNav />
-  <main>
+  <main id="main">
     <Hero />
     <Highlights />
     <CareerStory />
@@ -28,6 +29,23 @@ import Contact from './components/sections/Contact.vue'
 </template>
 
 <style scoped>
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 500;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-bg-alt);
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: var(--space-1);
+  top: var(--space-1);
+}
+
 main {
   padding-top: var(--nav-height);
 }

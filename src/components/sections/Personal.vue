@@ -18,7 +18,7 @@ useScrollReveal()
       />
     </svg>
     <div class="section-inner" ref="reveal">
-      <p class="eyebrow">Off the clock</p>
+      <h2 class="eyebrow">Off the clock</h2>
       <div class="personal-intro">
         <figure class="personal-photo">
           <picture>
@@ -34,6 +34,7 @@ useScrollReveal()
               alt="John skiing with his family in Austria"
               width="200"
               height="200"
+              loading="lazy"
             />
           </picture>
         </figure>

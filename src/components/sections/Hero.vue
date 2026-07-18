@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { getYearsInSoftware } from '../../data/profile'
+import { getHeroTagline } from '../../data/profile'
 import ConstellationBackground from '../ConstellationBackground.vue'
 
-const yearsInSoftware = getYearsInSoftware()
+const tagline = getHeroTagline()
 </script>
 
 <template>
@@ -30,12 +30,7 @@ const yearsInSoftware = getYearsInSoftware()
             fetchpriority="high"
           />
         </picture>
-        <p class="hero-tagline">
-          {{ yearsInSoftware }} years in software, the last three spent turning a small engineering
-          team into one that can carry real weight - 120 people, sixteen squads, systems that can't
-          afford to go down. I lead with trust over process, and I care as much about the leaders I
-          grow as the platforms we ship.
-        </p>
+        <p class="hero-tagline">{{ tagline }}</p>
       </div>
     </div>
   </section>
@@ -54,9 +49,6 @@ const yearsInSoftware = getYearsInSoftware()
 .hero-inner {
   position: relative;
   z-index: 1;
-}
-
-.hero-inner {
   animation: hero-in 0.7s ease both;
 }
 

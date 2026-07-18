@@ -8,7 +8,7 @@ useScrollReveal()
 <template>
   <section id="philosophy" class="section philosophy">
     <div class="section-inner" ref="reveal">
-      <p class="eyebrow">How I think about the job</p>
+      <h2 class="eyebrow">How I think about the job</h2>
       <ul class="philosophy-list">
         <li v-for="(item, i) in philosophy" :key="i">
           <span class="marker">{{ String(i + 1).padStart(2, '0') }}</span>
@@ -27,7 +27,7 @@ useScrollReveal()
   color: var(--color-bg);
 }
 
-.philosophy :deep(.eyebrow) {
+.philosophy .eyebrow {
   color: var(--color-accent-invert);
 }
 

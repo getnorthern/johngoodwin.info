@@ -160,10 +160,10 @@ function handleLogoClick(e: MouseEvent) {
   .nav-top-mask {
     display: block;
     position: fixed;
-    top: -200px;
+    top: calc(-1 * var(--nav-overshoot));
     left: 0;
     right: 0;
-    height: 200px;
+    height: var(--nav-overshoot);
     z-index: 150;
     background: var(--color-bg);
     pointer-events: none;
@@ -172,10 +172,10 @@ function handleLogoClick(e: MouseEvent) {
 
 .nav {
   position: fixed;
-  top: -200px;
+  top: calc(-1 * var(--nav-overshoot));
   left: 0;
   right: 0;
-  height: calc(200px + var(--nav-height));
+  height: calc(var(--nav-overshoot) + var(--nav-height));
   z-index: 200;
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
@@ -280,7 +280,7 @@ function handleLogoClick(e: MouseEvent) {
 /* Same top overshoot as .nav - see comment above it. */
 .nav-drawer__backdrop {
   position: fixed;
-  top: -200px;
+  top: calc(-1 * var(--nav-overshoot));
   left: 0;
   right: 0;
   bottom: 0;
@@ -290,13 +290,13 @@ function handleLogoClick(e: MouseEvent) {
 
 .nav-drawer {
   position: fixed;
-  top: -200px;
+  top: calc(-1 * var(--nav-overshoot));
   left: 0;
   bottom: 0;
   z-index: 400;
   width: 280px;
   max-width: 80vw;
-  padding-top: 200px;
+  padding-top: var(--nav-overshoot);
   background: var(--color-bg-alt);
   border-right: 1px solid var(--color-border);
   opacity: 0.95;
@@ -403,5 +403,16 @@ function handleLogoClick(e: MouseEvent) {
 .drawer-enter-from,
 .drawer-leave-to {
   transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .nav-inner,
+  .backdrop-enter-active,
+  .backdrop-leave-active,
+  .drawer-enter-active,
+  .drawer-leave-active {
+    transition: none;
+  }
 }
 </style>

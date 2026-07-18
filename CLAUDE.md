@@ -19,7 +19,7 @@ Project context and conventions for Claude Code.
 - **Composable naming:** camelCase, `use`-prefixed, in `src/composables/` (e.g. `useScrollProgress.ts`).
 - **Data files:** camelCase in `src/data/*.ts` (e.g. `experience.ts`, `selectedWork.ts`) — content lives here, separate from the components that render it, so copy can be edited without touching Vue/CSS.
 - **Prop casing:** camelCase in `<script>`, kebab-case in templates. Type props with `defineProps<{ ... }>()`.
-- **`<style scoped>`** for all component styles. Shared values (colour, spacing, type scale, breakpoints, the `640px` mobile cutoff, the nav's `0.35s` transition duration) live as custom properties in `src/styles/tokens.css` — reuse them rather than hardcoding new values.
+- **`<style scoped>`** for all component styles. Shared values (colour, spacing, type scale, the nav's `0.35s` transition duration, the iOS `--nav-overshoot` band) live as custom properties in `src/styles/tokens.css` — reuse them rather than hardcoding new values. Exception: the `640px` mobile cutoff is a repeated literal in `@media` queries by convention — plain CSS can't use `var()` in media conditions, so keep new breakpoints consistent with the existing literals.
 - **Reuse existing composables** for scroll/animation behaviour (`useScrollReveal`, `useNavVisibility`, `useScrollProgress`) rather than duplicating listener logic in a component.
 - **Small and focused components** — split a section component if it grows past ~150 lines with genuinely separate responsibilities. Don't pre-split or add prop-driven configurability a static one-page site doesn't need.
 - **`prefers-reduced-motion: reduce`** must disable any new non-essential CSS animation, matching the existing pattern in `tokens.css` and `Hero.vue`.
