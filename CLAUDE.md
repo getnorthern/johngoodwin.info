@@ -174,12 +174,16 @@ npm run build
 find dist -name ".DS_Store" -delete
 
 # 3. Sync hashed/static assets with a 1-year immutable cache
-#    (--exclude index.html since it needs different cache semantics)
+#    (--exclude index.html and the CV PDF - both live at stable URLs and need
+#    must-revalidate, or returning visitors get stale browser-cached copies)
 aws s3 sync dist/ s3://johngoodwin.info --delete --exclude "index.html" \
+  --exclude "john-goodwin-cv.pdf" \
   --cache-control "public, max-age=31536000, immutable"
 
-# 4. Upload index.html separately with must-revalidate so updates are picked up immediately
+# 4. Upload the stable-URL files separately with must-revalidate so updates are picked up immediately
 aws s3 cp dist/index.html s3://johngoodwin.info/index.html \
+  --cache-control "public, max-age=0, must-revalidate"
+aws s3 cp dist/john-goodwin-cv.pdf s3://johngoodwin.info/john-goodwin-cv.pdf \
   --cache-control "public, max-age=0, must-revalidate"
 
 # 5. Invalidate CloudFront so the CDN doesn't serve stale content
