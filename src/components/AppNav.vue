@@ -376,7 +376,7 @@ function handleLogoClick(e: MouseEvent) {
   content: '→';
   position: absolute;
   top: 50%;
-  right: 75px;
+  right: 50px;
   transform: translateY(-50%);
   opacity: 0;
   background: var(--gradient-accent);
