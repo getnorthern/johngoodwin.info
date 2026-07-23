@@ -388,7 +388,7 @@ function handleLogoClick(e: MouseEvent) {
 }
 
 .nav-drawer__link:hover::after {
-  right: 10px;
+  right: 1rem;
   opacity: 1;
 }
 
