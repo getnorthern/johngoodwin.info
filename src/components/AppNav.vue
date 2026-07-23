@@ -376,7 +376,7 @@ function handleLogoClick(e: MouseEvent) {
   content: '→';
   position: absolute;
   top: 50%;
-  right: 100px;
+  right: 75px;
   transform: translateY(-50%);
   opacity: 0;
   background: var(--gradient-accent);
@@ -384,7 +384,7 @@ function handleLogoClick(e: MouseEvent) {
   background-clip: text;
   color: transparent;
   pointer-events: none;
-  transition: right 0.3s ease, opacity 0.3s ease;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-drawer__link:hover::after {
