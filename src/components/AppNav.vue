@@ -358,6 +358,7 @@ function handleLogoClick(e: MouseEvent) {
 }
 
 .nav-drawer__link {
+  position: relative;
   text-decoration: none;
   color: var(--color-ink-soft);
   font-size: var(--size-base);
@@ -369,6 +370,26 @@ function handleLogoClick(e: MouseEvent) {
 
 .nav-drawer__link:hover {
   background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+.nav-drawer__link::after {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  right: 100px;
+  transform: translateY(-50%);
+  opacity: 0;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events: none;
+  transition: right 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-drawer__link:hover::after {
+  right: 10px;
+  opacity: 1;
 }
 
 /*
@@ -411,7 +432,8 @@ function handleLogoClick(e: MouseEvent) {
   .backdrop-enter-active,
   .backdrop-leave-active,
   .drawer-enter-active,
-  .drawer-leave-active {
+  .drawer-leave-active,
+  .nav-drawer__link::after {
     transition: none;
   }
 }
